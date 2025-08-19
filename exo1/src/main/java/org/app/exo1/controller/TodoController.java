@@ -28,6 +28,11 @@ public class TodoController {
         return ResponseEntity.ok(todoService.getById(id));
     }
 
+    @GetMapping("/completed/{completed}")
+    public ResponseEntity<List<TodoResponseDTO>> getTodosByCompleted(@PathVariable boolean completed) {
+        return ResponseEntity.ok(todoService.getAllByCompleted(completed));
+    }
+
     @PostMapping("/create")
     public ResponseEntity<TodoResponseDTO> createTodo(@RequestBody TodoRequestDTO requestDTO) {
         return ResponseEntity.status(201).body(todoService.create(requestDTO));
@@ -43,4 +48,6 @@ public class TodoController {
         todoService.delete(id);
         return ResponseEntity.ok(String.format("Tâche avec l'id %d supprimée", id));
     }
+
+
 }

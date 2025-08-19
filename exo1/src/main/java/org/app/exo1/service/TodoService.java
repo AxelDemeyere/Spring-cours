@@ -51,4 +51,8 @@ public class TodoService {
         }
         todoRepository.deleteById(id);
     }
+
+    public List<TodoResponseDTO> getAllByCompleted(boolean completed) {
+        return todoRepository.findAllByCompleted(completed).stream().map(Todo::toDto).toList();
+    }
 }
